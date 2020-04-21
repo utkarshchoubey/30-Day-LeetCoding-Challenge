@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int countElements(vector<int>& arr) {
+        map<int , int> m ;
+        for(int i = 0 ; i < arr.size() ; i++){
+            m[arr[i]]++;
+        }
+        int ans = 0;
+        for(auto it : m){
+            //cout << it.first+1 << endl ;
+            auto tmp = m.find((it.first)+1) ;
+            if(tmp!=m.end()){
+                ans += it.second ;
+            }
+        }
+         return ans ;
+    }
+};
