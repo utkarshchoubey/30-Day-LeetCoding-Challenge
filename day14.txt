@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string stringShift(string s, vector<vector<int>>& shift) {
+        int sft = 0 ;
+        // +ve for right shift , -ve for left shift
+        for(int i = 0 ; i < shift.size() ; i++){
+            if(shift[i][0]==1) sft += shift[i][1] ;
+            if(shift[i][0]==0) sft -= shift[i][1] ;
+        }
+        int n = s.length() ;
+        bool left = false ;
+        if(sft<0) left = true ;
+        sft = abs(sft) ;
+        if(sft>=n) sft %= n ;
+        if(sft==0)
+            return s ;
+        else if(!left){
+            reverse(s.begin(),s.begin()+(s.length()-sft)) ;
+            reverse(s.end()-sft,s.end()) ;
+            reverse(s.begin(),s.end()) ;
+        }
+        else{
+            reverse(s.begin(),s.begin()+sft) ;
+            reverse(s.begin()+sft,s.end());
+            reverse(s.begin(),s.end()) ;
+        }
+        return s ;
+    }
+};
